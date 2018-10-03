@@ -3,7 +3,7 @@
 {% block content %}
 <div class="col-6 offset-m3">
     <h1>Update: {{ object.title }}</h1>
-    <form class="my-ajax-form" method="POST" data-url="{{ request.build_absolute_uri|safe }}">  <!--data-url = sending this to new end point-->
+    <form class="my-ajax-form" method="POST" data-url="{% url 'article:article-update' object.slug %}">  <!--data-url = sending this to new end point-->
         {% csrf_token %}
         {{form.as_p}}
         <input class='btn btn-primary' type='submit' value='Save' />
