@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<h3>{{ object.title }}</h3>
-<small>Created:{{ object.created }}</small>
-<p>{{ object.description|linebreaks }}</p>
-<a class="btn btn-primary" href = "{% url 'article:article-update' object.slug %}" role="button">Update</a>
-
+<div class="col-6 offset-m3">
+    <h3>{{ object.title }}</h3>
+    <small>Created:{{ object.created }}</small>
+    <p>{{ object.description|linebreaks }}</p>
+    <a class="btn btn-primary" href = "{% url 'article:article-update' object.slug %}" role="button">Update</a>
+</div>
 
 {% endblock content %}
 

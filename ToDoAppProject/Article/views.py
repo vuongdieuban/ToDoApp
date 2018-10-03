@@ -7,6 +7,7 @@ from django.views.generic import (
     UpdateView,
     DeleteView,
 )
+from .mixins import AjaxFormMixin
 
 from .forms import ArticleModelForm
 from .models import Article
@@ -35,7 +36,7 @@ class ArticleCreateView(CreateView):
         return super().form_valid(form)
 
 
-class ArticleUpdateView(UpdateView):
+class ArticleUpdateView(AjaxFormMixin, UpdateView):
     template_name = 'article/article_update.html'
     form_class = ArticleModelForm
     queryset = Article.objects.all()
@@ -44,10 +45,6 @@ class ArticleUpdateView(UpdateView):
     def get_object(self, queryset=None):
         slug_ = self.kwargs.get("slug")
         return get_object_or_404(Article, slug=slug_)
-
-    def form_valid(self, form):
-        print(form.cleaned_data)
-        return super().form_valid(form)
 
 
 class ArticleDeleteView(DeleteView):
@@ -59,3 +56,9 @@ class ArticleDeleteView(DeleteView):
 
     def get_success_url(self):
         return reverse('article:article-list')
+
+
+def test_view(request):
+    template_name = 'article/article_test.html'
+    context = {}
+    return render(request, template_name, context)

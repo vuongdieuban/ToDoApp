@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 from django.db import models
 from django.urls import reverse
+from django.utils import timezone
 from django.db.models.signals import pre_save
 from ToDoAppProject.utils import unique_slug_generator
 
@@ -10,7 +11,7 @@ from ToDoAppProject.utils import unique_slug_generator
 
 class Article(models.Model):
     title       = models.CharField(max_length=120)
-    created     = models.DateTimeField(auto_now_add=True)
+    created     = models.DateTimeField(default=timezone.now)
     description = models.TextField(null=False)
     slug = models.SlugField(max_length=50, unique=True)
 

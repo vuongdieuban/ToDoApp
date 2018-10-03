@@ -115,7 +115,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False  # set to True to use UTC, False will use current local time
 
 
 # Static files (CSS, JavaScript, Images)
