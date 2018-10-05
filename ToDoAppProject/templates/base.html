@@ -29,41 +29,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-
-    {% block javascript %}
-    <script>
-        $(document).ready(function(){
-            var $myForm = $(".my-ajax-form")
-            $myForm.submit(function(event){
-                event.preventDefault()      //prevent form to submit a normal way (synchronus way)
-                var $formData = $(this).serialize()
-                var $endpoint = $myForm.attr("data-url") || window.location.href
-                console.log($formData)
-                console.log($endpoint)
-                $.ajax({
-                    method:"POST",
-                    url: $endpoint,
-                    data: $formData,
-                    success: handleFormSuccess,
-                    error: handleFormError,
-                })
-    
-                function handleFormSuccess(data, textStatus, jqXHR){
-                    console.log(data)
-                    console.log(textStatus)
-                    console.log(jqXHR)
-                    $myForm[0].reset();    //reset form data
-                }
-    
-                function handleFormError(jqXHR, textStatus, errorThrown){
-                    console.log(jqXHR)
-                    console.log(textStatus)
-                    console.log(errorThrown)
-                }
-            })
-        })
-    </script>
-    {% endblock javascript %}
+    <!--ajax call-->
+    <script src="{% static '/js/ajax_call.js' %}"></script>
 
 </body>
 </html>
